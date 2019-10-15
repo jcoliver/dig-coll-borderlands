@@ -1,6 +1,8 @@
 # Collections as Data
 ## Planning for python lessons
 
+An example question of what a disciplinary scholar would be interested in doing in the classroom: I would like to track the difference in sentiment for the month prior and the month after the Bisbee deportation that occurred on July 12, 1917. i.e. sentiment analysis for June 1917, July 1917, and August 1917. Do this for 2+ newspapers and draw comparisons. Do sentiment analysis, word frequency analysis, and most specialized words.
+
 Data will come from UAL Special Collections OCR of borderlands newspapers, focusing on two timeframes:
 
 + 1915-1922
