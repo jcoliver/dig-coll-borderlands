@@ -4,28 +4,39 @@
 # jcoliver@email.arizona.edu
 # 2019-10-15
 import pandas
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import RegexpTokenizer
 
 # Much of this comes from the Programming Historian python lessons
 # See https://programminghistorian.org/en/lessons/counting-frequencies
 
-# Open the text file and read it into wordlist, splitting into a list
+# Open the text file
 textfile = open("data/bisbee-daily-review/1916-04-05-page-04.txt", "rb")
-wordlist = textfile.read().split()
+# Read text file into single string
+wordstring = textfile.read()
+# Close the input file
 textfile.close()
-# print(wordlist)
 
-# TODO: removal of stopwords will happen here
+# Make all letters lower case
+wordstring = wordstring.lower()
 
-# TODO: need to remove commas and potentially other puncutation
+# Remove puncutation AND convert to list
+tokenizer = RegexpTokenizer(r'\w+')
+wordlist = tokenizer.tokenize(wordstring)
 
-# Make dataframe with words, will use to group by word and count
-worddf = pandas.DataFrame({"words" : wordlist})
-print(worddf.head())
-# Count frequencies of each word (first approach)
-# wordfreq = []
-# for w in wordlist:
-#     wordcount = wordlist.count(w)
-#     wordfreq.append(wordcount)
+# Removal of stopwords
+stop_words = set(stopwords.words('english'))
+filtered_words = []
+for w in wordlist:
+    if w not in stop_words:
+        # Still some odd, single-length words; drop those too
+        if len(w) > 1:
+            filtered_words.append(w)
 
-# Put into a dictionary
-# worddict = dict(zip(wordlist, wordcount))
+# Make dataframe with words
+worddf = pandas.DataFrame({"words" : filtered_words})
+
+# Count words for frequency table
+wordcount = worddf['words'].value_counts()
+print(wordcount.head(n = 10))

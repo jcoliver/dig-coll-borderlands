@@ -18,3 +18,14 @@ The Spanish language titles are largely available at [http://www.library.arizona
 
 English language titles are hosted by [Chronicling America](https://chroniclingamerica.loc.gov/newspapers/).
 2016-04-05 of _Bisbee Daily Review_ is at [https://chroniclingamerica.loc.gov/lccn/sn84024827/1916-04-05/ed-1/seq-4/ocr/](https://chroniclingamerica.loc.gov/lccn/sn84024827/1916-04-05/ed-1/seq-4/ocr/). A text file should be available at [https://chroniclingamerica.loc.gov/lccn/sn84024827/1916-04-05/ed-1/seq-4/ocr.txt](https://chroniclingamerica.loc.gov/lccn/sn84024827/1916-04-05/ed-1/seq-4/ocr.txt), but as of 2019-10-15, this was unavailable (as was the XML version). A copy of the text is saved in data/bisbee-daily-review.
+
+## Pressure points
++ Getting data in computable format. If APIs are out there it would make things a lot easier.
++ Installing NLTK for python is a little screwy.
++ Downloading stopwords from NLTK may require some attention
+
+**Note** installing the natural language toolkit (nltk) for python took a little wrangling, most likely due to incorrect installation of pip. To get it installed, use:
+
+`python -m pip install nltk`
+
+from the terminal. nltk documentation suggests `pip install nltk`, but this throws an error "ImportError: cannot import name 'main'". See [https://github.com/pypa/pip/issues/5599](https://github.com/pypa/pip/issues/5599) for discussion and debugging.
