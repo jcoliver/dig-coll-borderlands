@@ -2,6 +2,17 @@
 
 See development script called download-dev.py
 
+## 2020-03-25
+In the JSON response, each element in 'items' is effectively a page, and that page number is stored in the 'sequence' element. The date of publication is formatted at YYYYMMDD and is in the 'date' element. Could use a file naming convention that is:
+date-sequence.txt.
+**Question:** Do we care about situations where the number of pages in a single issue is greater than nine? These may cause changes when sorting files...
+date-1.txt
+date-2.txt
+...
+date-10.txt
+
+**Question:** Do we want to create documents that are entire volumes? That is create a single text file with the text for an entire day's paper. If so, do these live in the same folder? These would then be named date.txt. This could be done after download occurs.
+
 ## 2020-03-24
 In conversations with LoC folks, there is an API for all records for a particular title:
 
