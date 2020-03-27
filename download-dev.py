@@ -8,6 +8,7 @@ import urllib
 import json
 import pandas as pd
 import time
+import os
 
 # The url for a query to Library of Congress; excludes two key-value pairs:
 #      the library of congress call number lccn=XXXX
@@ -24,9 +25,16 @@ for index, row in titles.iterrows():
     title = row['name']
     lccn = row['lccn']
     directory = row['directory']
+    # Page files are going to end up in a folder called "pages" within each
+    # title's directory. Check to see if data/<directory>/pages exists; if not,
+    # create it
+    destination_dir = "data/" + directory + "/pages"
+    if (not(os.path.isdir(destination_dir))):
+        os.makedirs(destination_dir)
+
     language = row['language']
-    # The name of the element where OCR text is stored is based on the language;
-    # ocr_eng for English, ocr_spa for Spanish
+    # The name of the element in the returned JSON obejct where OCR text is
+    # stored is based on the language; ocr_eng for English, ocr_spa for Spanish
     ocr_lang = "ocr_" + language[0:3].lower()
 
     print("Querying " + title + "...")
@@ -73,7 +81,7 @@ for index, row in titles.iterrows():
                 ocr_text = item[ocr_lang].encode("utf-8")
                 date = item['date']
                 sequence = item['sequence']
-                filename = "data/" + directory + "/" + str(date)
+                filename = destination_dir + "/" + str(date)
                 filename = filename + "-" + str(sequence) + ".txt"
                 text_file = open(filename, "w")
                 text_file.write(ocr_text)
@@ -101,9 +109,3 @@ for item in items:
     sequence = item['sequence']
     filename = str(date) + "-" + str(sequence) + ".txt"
     print(filename)
-
-# import urllib, json
-# url = "http://maps.googleapis.com/maps/api/geocode/json?address=google"
-# response = urllib.urlopen(url)
-# data = json.loads(response.read())
-# print data
