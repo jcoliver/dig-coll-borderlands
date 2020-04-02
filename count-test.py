@@ -41,8 +41,13 @@ worddf = pandas.DataFrame({'words' : filtered_words})
 # Count words for frequency table
 wordcount = worddf['words'].value_counts()
 # TODO: Seems a bit convoluted to get this back into a dataframe...
+# wordcount appears to be a Series, and may be able to get it into a data frame
+# via wordcount.to_frame()
+# https://pandas.pydata.org/pandas-docs/version/0.24.2/reference/api/pandas.Series.to_frame.html#pandas.Series.to_frame
 wordcount = pandas.DataFrame({"words": wordcount.index, "count": wordcount.values})
 
+# Is sort necessary? Series.value_counts() should return values in descending
+# order...
 # Sort data frame, descending
 wordcount.sort_values(by = 'count', ascending = False, inplace = True)
 print(wordcount.head(n = 10))

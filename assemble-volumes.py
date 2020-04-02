@@ -13,9 +13,11 @@ import os
 # than a page-by-page basis
 # Want to concatenate all pages from the same date into a single file
 # Page files are named as YYYYMMDD-<page>.txt
+# Volume files will be named YYYYMMDD.txt
 
 titles = pd.read_csv("data/titles.csv")
-# Do this for each of the titles of interest
+
+# iterate over each title in the data frame
 for index, row in titles.iterrows():
     title = row['name']
     directory = row['directory']
@@ -29,19 +31,19 @@ for index, row in titles.iterrows():
             os.makedirs(volume_locations)
 
         filenames = os.listdir(page_locations)
-        # Want to identify unique dates and concatenate files for each unique
-        # date
+
+        # Identify unique dates and concatenate page files for each unique date
 
         # Create a list with all the YYYYMMDD dates, from the filenames list
         # First remove the file extension
         dates_list = [d.replace(".txt", "") for d in filenames]
-        # Next create the list of lists, each element is a YYYYMMDD and a page
-        # number
+        # Next create the list of lists, each element is a two-element list:
+        # 0:YYYYMMDD, 1:page number
         dates_list = [d.split("-") for d in dates_list]
 
-        # Take the list of lists and convert to a dictionary, which uses
-        # YYYYMMDD as the key and each element is a list of page numbers
-        # dates_dict will eventually look like:
+        # Use the list of lists to build a dictionary, with YYYYMMDD as the key
+        # and each value is a list of page numbers; dates_dict will eventually
+        # look like:
         # {'19430706': ['1', '2'], '19430723': ['1', '2', '3'], ...}
         dates_dict = {}
         for page in dates_list:
@@ -63,7 +65,6 @@ for index, row in titles.iterrows():
         # Iterate (again?!?) over each element of the dictionary, creating a
         # volume that is a concatenation of each YYYYMMDD and page number for
         # each unique date
-
         for date, pages in dates_dict.items():
             # Concatenate all pages for a particular date, separated by a
             # single whitespace character
@@ -82,15 +83,16 @@ for index, row in titles.iterrows():
                 page_text = page_file.read()
                 page_file.close()
                 page_list.append(page_text)
+            # end iteration over all pages for single date
 
+            # concatenate all pages of text into single string
             volume = volume.join(page_list)
 
-            # Write the string to a file
+            # write the string to a file
             volume_location = volume_locations + "/" + str(date) + ".txt"
-
-            # volume_file = open(volume_location, "w")
-            # volume_file.write(volume)
-            # volume_file.close()
+            volume_file = open(volume_location, "w")
+            volume_file.write(volume)
+            volume_file.close()
         # end iteration over dates dictionary
 
 # End iterating over each title
