@@ -31,6 +31,7 @@ for index, row in titles.iterrows():
     destination_dir = "data/" + directory + "/pages"
     if (not(os.path.isdir(destination_dir))):
         os.makedirs(destination_dir)
+    download_log = destination_dir + "/log.txt"
 
     language = row['language']
     # The name of the element in the returned JSON obejct where OCR text is
@@ -51,8 +52,8 @@ for index, row in titles.iterrows():
 
     # To actually download text files, will need to send multiple queries, up
     # to the point where we reach total_items
-    # if (total_items > 0):
-    if (title == "Apache Sentinel"):
+    if (total_items > 0):
+    # if (title == "Apache Sentinel"):
         page = 1
         while ((page - 1) * num_records) <= total_items:
             if (page > 1):
@@ -78,34 +79,25 @@ for index, row in titles.iterrows():
             # file using the data/<directory>/<date>-<sequence>.txt file naming
             # convention
             for item in download_data['items']:
-                ocr_text = item[ocr_lang].encode("utf-8")
                 date = item['date']
                 sequence = item['sequence']
-                filename = destination_dir + "/" + str(date)
-                filename = filename + "-" + str(sequence) + ".txt"
-                text_file = open(filename, "w")
-                text_file.write(ocr_text)
-                text_file.close()
+                # Some pages do not have corresponding text available; check to
+                # see if OCR text exists first before trying to access
+                if ocr_lang in item.keys():
+                    ocr_text = item[ocr_lang].encode("utf-8")
+                    filename = destination_dir + "/" + str(date)
+                    filename = filename + "-" + str(sequence) + ".txt"
+                    text_file = open(filename, "w")
+                    text_file.write(ocr_text)
+                    text_file.close()
+                else:
+                    log_message = "Missing lanuage key '" + ocr_lang + "' in " + str(date) + ", page " + str(sequence)
+                    print("\t" + log_message)
+                    log_file = open(download_log, "a+")
+                    log_file.write(log_message + "\n")
+                    log_file.close()
             # End iterating over page results
             page = page + 1
-        # End while loop
+        # End while loop iterating over pagenation
     # end conditional for non-zero results
-# end iteration over files
-
-# Stuff below here can probably be ditched
-import sys
-sys.exit()
-
-# define url to try
-query = "https://chroniclingamerica.loc.gov/search/pages/results/?lccn=sn95060694&dateFilterType=yearRange&date1=1789&date2=1963&proxdistance=5&rows=10&searchType=advanced&sort=date&format=json"
-response = urllib.urlopen(query)
-data = json.loads(response.read())
-# print data.keys()
-# print data['items'][2]['ocr_spa']
-items = data['items']
-for item in items:
-    ocr_text = item['ocr_spa']
-    date = item['date']
-    sequence = item['sequence']
-    filename = str(date) + "-" + str(sequence) + ".txt"
-    print(filename)
+# end iteration over titles
