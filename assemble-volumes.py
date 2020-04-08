@@ -6,6 +6,7 @@
 
 import pandas as pd
 import os
+import re
 # from glob import glob
 
 # Rationale: files downloaded from Chronicling America are individual pages
@@ -21,47 +22,57 @@ titles = pd.read_csv("data/titles.csv")
 for index, row in titles.iterrows():
     title = row['name']
     directory = row['directory']
-    # for now, only looking at the one title for which we have data
-    if (title == "Apache Sentinel"):
-        # Path to folder with individual page files
-        page_locations = "data/" + directory + "/pages"
-        # Path to folder that will hold volume files
-        volume_locations = "data/" + directory + "/volumes"
-        if (not(os.path.isdir(volume_locations))):
-            os.makedirs(volume_locations)
+    # Path to folder with individual page files
+    page_locations = "data/" + directory + "/pages"
+    # Path to folder that will hold volume files
+    volume_locations = "data/" + directory + "/volumes"
+    if (not(os.path.isdir(volume_locations))):
+        os.makedirs(volume_locations)
 
-        filenames = os.listdir(page_locations)
+    filenames = os.listdir(page_locations)
+    # Need to restrict to files matching YYYYMMDD pattern (there are log.txt
+    # files in the pages directories)
+    date_pattern = re.compile("[0-9]{8}-.*")
+    filenames = list(filter(date_pattern.match, filenames))
 
-        # Identify unique dates and concatenate page files for each unique date
+    # Identify unique dates and concatenate page files for each unique date
 
-        # Create a list with all the YYYYMMDD dates, from the filenames list
-        # First remove the file extension
-        dates_list = [d.replace(".txt", "") for d in filenames]
-        # Next create the list of lists, each element is a two-element list:
-        # 0:YYYYMMDD, 1:page number
-        dates_list = [d.split("-") for d in dates_list]
+    # Create a list with all the YYYYMMDD dates, from the filenames list
+    # First remove the file extension
+    # ['19430706-1', '19430706-2', ...]
+    dates_list = [d.replace(".txt", "") for d in filenames]
+    # Next create the list of lists, each element is a two-element list:
+    # [0:YYYYMMDD, 1:page number]
+    # e.g. [ ['19430706', '1'], ['19430706', '2'], ... ]
+    dates_list = [d.split("-") for d in dates_list]
 
-        # Use the list of lists to build a dictionary, with YYYYMMDD as the key
-        # and each value is a list of page numbers; dates_dict will eventually
-        # look like:
-        # {'19430706': ['1', '2'], '19430723': ['1', '2', '3'], ...}
-        dates_dict = {}
-        for page in dates_list:
-            date = page[0]
-            if date in dates_dict.keys():
-                dates_dict[date].append(page[1])
-            else:
-                dates_dict[date] = [page[1]]
-        # end iterating over all pages files
+    # Use the list of lists to build a dictionary, with YYYYMMDD as the key
+    # and each value is a list of page numbers; dates_dict will eventually
+    # look like:
+    # {'19430706': ['1', '2'], '19430723': ['1', '2', '3'], ...}
+    dates_dict = {}
+    for page in dates_list:
+        date = page[0]
+        if (len(page) < 2):
+            print("No pages for " + date + " in " + title)
+            stop()
+        if date in dates_dict.keys():
+            dates_dict[date].append(page[1])
+        else:
+            dates_dict[date] = [page[1]]
+    # end iterating over all pages files
 
-        # Status report
-        print("= = = = = = = = = = = = = = = = = = = =")
-        print("Found data for " + title)
-        print("Page files are in " + page_locations)
-        print(str(len(filenames)) + " total pages")
-        print("Volumes will be written to " + volume_locations)
-        print(str(len(dates_dict)) + " total volumes")
+    # Status report
+    print("= = = = = = = = = = = = = = = = = = = =")
+    print("Found data for " + title)
+    print("Page files are in " + page_locations)
+    print(str(len(filenames)) + " total pages")
+    print("Volumes will be written to " + volume_locations)
+    print(str(len(dates_dict)) + " total volumes")
 
+    # Conditional used for debugging; toggle to skip actual volume assembly
+    assemble = True
+    if assemble:
         # Iterate (again?!?) over each element of the dictionary, creating a
         # volume that is a concatenation of each YYYYMMDD and page number for
         # each unique date
@@ -76,7 +87,10 @@ for index, row in titles.iterrows():
             pages = [int(p) for p in pages]
             pages.sort()
 
+            # list of strings; each element is text for a single page in a volume
             page_list = []
+
+            # Iterate over all pages and append each page as a string to page_list
             for page in pages:
                 page_location = page_locations + "/" + date + "-" + str(page) + ".txt"
                 page_file = open(page_location, "r")
