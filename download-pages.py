@@ -53,7 +53,7 @@ for index, row in titles.iterrows():
     # To actually download text files, will need to send multiple queries, up
     # to the point where we reach total_items
     if (total_items > 0):
-    # if (title == "Apache Sentinel"):
+    # if (title == "Arizona Post"):
         page = 1
         while ((page - 1) * num_records) <= total_items:
             if (page > 1):
