@@ -40,6 +40,8 @@ worddf = pandas.DataFrame({'words' : filtered_words})
 
 # Count words for frequency table
 wordcount = worddf['words'].value_counts()
+# Also consider normalize=True in value_counts, will then return the relative
+# frequency, which might be more interesting (or useful for comparisons)
 # TODO: Seems a bit convoluted to get this back into a dataframe...
 # wordcount appears to be a Series, and may be able to get it into a data frame
 # via wordcount.to_frame()
