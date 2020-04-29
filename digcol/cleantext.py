@@ -1,7 +1,6 @@
-# Methods & classes for digital collections lessons
-# Jeff Oliver
-# jcoliver@arizona.edu
-# 2020-04-27
+"""
+Class to clean and tokenize text files for analysis
+"""
 
 import nltk
 from nltk.corpus import stopwords
@@ -60,10 +59,3 @@ class CleanText:
                 if len(word) >= self.min_length:
                     filtered_words.append(word)
         return(filtered_words)
-
-# Classes needed?
-# One class, cleantext that takes arguments:
-# a filename
-# a language (default = english) for stopwords
-# minimum length of token (default = 2)
-
