@@ -1,5 +1,10 @@
 # JupyterHub for workshops
 
+## 2020-04-30
++ Logged on as "student2" to see if plotly.express is available.
+http://128.196.142.57/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fjcoliver%2Fdig-coll-borderlands&urlpath=tree%2Fdig-coll-borderlands%2F
+    + Nope. Logged in as admin, opened a new terminal and ran `sudo -E pip install plotly`
+
 ## 2020-04-29
 + Lots of data files. Used `scp` to get them onto Atmosphere; they ended up in /home/<admin>/Documents/collections-as-data/data
 + Created a symbolic link to data directory in /home (`ln -s /home/<admin>/Documents/collections-as-data/data /home/data`)
