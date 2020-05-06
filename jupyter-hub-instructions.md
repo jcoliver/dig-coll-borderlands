@@ -1,5 +1,14 @@
 # JupyterHub for workshops
 
+## 2020-05-05
++ Installing scipy and statistics
+    + Push latest to GitHub      
+    + Log in as admin http://128.196.142.43/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fjcoliver%2Fdig-coll-borderlands&urlpath=tree%2Fdig-coll-borderlands%2F
+    + opened a new terminal and ran `sudo -E pip install scipy`
+
+## 2020-05-01
+http://128.196.142.43/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fjcoliver%2Fdig-coll-borderlands&urlpath=tree%2Fdig-coll-borderlands%2F
+
 ## 2020-04-30
 + Logged on as "student2" to see if plotly.express is available.
 http://128.196.142.57/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fjcoliver%2Fdig-coll-borderlands&urlpath=tree%2Fdig-coll-borderlands%2F
