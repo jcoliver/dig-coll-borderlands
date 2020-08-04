@@ -1,4 +1,2 @@
-pandas>=1.1.0
-numpy>=1.19.1
-regex>=2020.7.14
-nltk>=3.5
+pandas
+nltk
