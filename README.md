@@ -13,6 +13,9 @@ This repository hosts Python code for downloading and analyzing scanned OCR text
 
 The text for these newspapers is available at [Chronicling America](https://chroniclingamerica.loc.gov/newspapers/). Downloads of the texts used the API, documented at [https://chroniclingamerica.loc.gov/about/api/](https://chroniclingamerica.loc.gov/about/api/).
 
+## Text data mining lesson
+Lessons for using these data in text data mining are available in a Jupyter Notebook, which you can launch via [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jcoliver/dig-coll-borderlands/master)
+
 ## Data preparation
 1. Titles and associated metadata are found in data/titles.csv
 2. Text files of individual pages are downloaded via download-pages.py. Pages are downloaded to a folder called 'pages' in the data folder for the appropriate title. For example, pages for _El Tucsonense_ are downloaded to 'data/el-tucsonense/pages'. File names reflect the date, in YYYYMMDD, and the page number; e.g. page 2 of _El Tucsonense_'s paper from January 3, 1925 is stored as 19250103-2.txt.
