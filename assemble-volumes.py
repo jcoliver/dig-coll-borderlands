@@ -7,7 +7,6 @@
 import pandas as pd
 import os
 import re
-# from glob import glob
 
 # Rationale: files downloaded from Chronicling America are individual pages
 # Would like to ultimately analyze these on a volume-by-volume basis, rather
