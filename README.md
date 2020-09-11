@@ -21,7 +21,7 @@ Lessons for using these data in text data mining are available in Jupyter Notebo
 |:-----|:------:|:------------|
 | Introduction to text mining (short) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jcoliver/dig-coll-borderlands/master?filepath=Text-Mining-Short.ipynb) | A brief lesson introducing relative word frequencies and visual display of word use over time. Includes a subset of the titles (three) for the three year period 1917-1919. |
 | Introduction to text mining (long)  | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jcoliver/dig-coll-borderlands/master?filepath=Text-Mining-Long.ipynb) | An extended version of the short lesson, above. Time to complete the lesson is approximately two hours |
-| Text mining template | _coming soon_ | A relatively lightweight notebook to explore text mining analyses on the full data set of eight titles. |
+| Text mining template | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jcoliver/dig-coll-borderlands/master?filepath=Text-Mining-Template.ipynb) | A relatively lightweight notebook to explore text mining analyses on the full data set of eight titles. |
 
 
 ## Data preparation scripts
