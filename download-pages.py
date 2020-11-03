@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Testing download approach for Chronicling America OCR text
+# Download individual pages from Chronicling America OCR text
 # Jeff Oliver
 # jcoliver@email.arizona.edu
 # 2020-03-24

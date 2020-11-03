@@ -1,6 +1,6 @@
 # Updating Jupyter Notebook locally
 
-**Background**: instance of Jupyter Notebook of unknown antiquity () on laptop. Trying to update it in response to error message:
+**Background**: instance of Jupyter Notebook of unknown antiquity on laptop. Trying to update it in response to error message:
 ```
 jupyter --version
 Traceback (most recent call last):

@@ -1,6 +1,6 @@
 # Downloading content from Chronicling America
 
-See development script called download-dev.py
+See script called download-pages.py
 
 ## 2020-03-25
 In the JSON response, each element in 'items' is effectively a page, and that page number is stored in the 'sequence' element. The date of publication is formatted at YYYYMMDD and is in the 'date' element. Could use a file naming convention that is:
