@@ -17,7 +17,7 @@ If you are looking for an introduction explaining the concept of text data minin
 The text for these newspapers is available at [Chronicling America](https://chroniclingamerica.loc.gov/newspapers/). Downloads of the texts used the API, documented at [https://chroniclingamerica.loc.gov/about/api/](https://chroniclingamerica.loc.gov/about/api/).
 
 ## Text data mining lessons
-Lessons for using these data in text data mining are available in Jupyter Notebooks:
+Lessons for using these data in text data mining are available in Jupyter Notebooks. All lessons are licensed under a [CC-BY-4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode) 2020 by Jeffrey C. Oliver.
 
 | Name | Launch | Description |
 |:-----|:------:|:------------|
