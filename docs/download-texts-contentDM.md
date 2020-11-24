@@ -138,6 +138,18 @@ But these are records for an individual day's paper (not individual pages).
 The getfile utility provides a list of all pages:
 https://content.library.arizona.edu/utils/getfile/collection/p16127coll3/id/6237/filename/testpage.xml
 
+<cpd>
+  <type>Document</type>
+    <page>
+      <pagetitle>Page 1</pagetitle>
+      <pagefile>6234.jp2</pagefile>
+      <pageptr>6233</pageptr>
+    </page>
+    <page>
+        ....
+    </page>
+</cpd>
+
 And from there, there are four pages, with pageptr values 6233-6236. We can then get text for page 1 via:
 
 https://content.library.arizona.edu/digital/bl/dmwebservices/index.php?q=dmGetItemInfo/p16127coll3/6233/json
