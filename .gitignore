@@ -1,2 +1,6 @@
 */__pycache__/
 data/full
+data/complete
+.ipynb_checkpoints
+env
+redata-submission

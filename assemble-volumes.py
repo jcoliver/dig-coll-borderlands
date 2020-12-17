@@ -15,16 +15,19 @@ import re
 # Page files are named as YYYYMMDD-<page>.txt
 # Volume files will be named YYYYMMDD.txt
 
-titles = pd.read_csv("data/titles.csv")
+titles = pd.read_csv("data/complete/complete-titles.csv")
+
+# Conditional used for debugging; False will skip actual volume assembly
+assemble = True
 
 # iterate over each title in the data frame
 for index, row in titles.iterrows():
     title = row['name']
     directory = row['directory']
     # Path to folder with individual page files
-    page_locations = "data/" + directory + "/pages"
+    page_locations = "data/complete/" + directory + "/pages"
     # Path to folder that will hold volume files
-    volume_locations = "data/" + directory + "/volumes"
+    volume_locations = "data/complete/" + directory + "/volumes"
     if (not(os.path.isdir(volume_locations))):
         os.makedirs(volume_locations)
 
@@ -69,8 +72,6 @@ for index, row in titles.iterrows():
     print("Volumes will be written to " + volume_locations)
     print(str(len(dates_dict)) + " total volumes")
 
-    # Conditional used for debugging; toggle to skip actual volume assembly
-    assemble = True
     if assemble:
         # Iterate (again?!?) over each element of the dictionary, creating a
         # volume that is a concatenation of each YYYYMMDD and page number for

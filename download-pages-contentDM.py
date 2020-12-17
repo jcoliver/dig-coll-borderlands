@@ -21,6 +21,13 @@ base_url = "https://content.library.arizona.edu/digital/bl/dmwebservices/index.p
 # Maximum records to return with a single request
 num_records = 100
 
+# If True, will only run process for a small subset of records
+testing = False
+
+# Whether or not to actually download the files; False will do a dry-run of the
+# process, but skip file downloads. Primarily for debugging.
+download = True
+
 # Whether or not to print message for each volume
 verbose = False
 
@@ -51,10 +58,10 @@ dmQuery_dict = json.loads(item_count_response.read())
 total_items = dmQuery_dict["pager"]["total"]
 print("Found " + str(total_items) + " items")
 
-# TODO: delete these three lines when done testing
-total_items = 10
-num_records = 10
-print("But only testing with " + str(total_items) + " items")
+if (testing):
+    total_items = 10
+    num_records = 10
+    print("But only testing with " + str(total_items) + " items")
 
 # Now we will iterate over all 3679 records, and look at the pointer field
 # within an individual record
@@ -67,10 +74,12 @@ if (total_items > 0):
     # The item on which to start, because the url isn't indexed by page
     start = 1
 
-    while (start + num_records - 1) <= total_items:
+    while start <= total_items:
         if (start > 1):
             time.sleep(0.5) # be nice to contentDM server
 
+        # num_records will be inclusive of start, so for reporting purposes, we
+        # need to subtract 1 from total
         print("\nLooking at items " + str(start) + " through " + str(start + num_records - 1), end = "")
 
         # Query to get the records for that page
@@ -83,6 +92,8 @@ if (total_items > 0):
         for record in records_list:
             pointer = record["pointer"]
 
+            # TODO: Dots do not work as expected, they all get printed out at
+            # once...
             if (volumes_downloaded + volumes_skipped) % dot_frequency == 0:
                 print(".", end = "")
 
@@ -112,8 +123,9 @@ if (total_items > 0):
                 # https://content.library.arizona.edu/utils/getfile/collection/p16127coll3/id/6237/filename/testpage.xml
 
                 # Query to get pointers for individual pages for a single day's
-                # paper
+                # paper.
                 one_day_query = "https://content.library.arizona.edu/utils/getfile/collection/p16127coll3/id/" + str(pointer) + "/filename/testpage.xml"
+                # TODO: Have hit HTTP response 500 here (idiosyncratic)
                 file = urllib.request.urlopen(one_day_query)
                 data = file.read()
                 file.close()
@@ -143,9 +155,12 @@ if (total_items > 0):
                     page_filename = date_str + "-" + page_number + ".txt"
                     page_filepath = pagespath + page_filename
                     # Write the text to the file and move on
-                    text_file = open(page_filepath, "w")
-                    text_file.write(ocr_text)
-                    text_file.close()
+
+                    if (download):
+                        text_file = open(page_filepath, "w")
+                        text_file.write(ocr_text)
+                        text_file.close()
+
                     pages_downloaded = pages_downloaded + 1
                 # End iterating over all pages in a volume
                 volumes_downloaded = volumes_downloaded + 1
@@ -156,7 +171,7 @@ if (total_items > 0):
             # End iterating over each record (a single day's paper)
 
         # End iterating over page results
-        start = start * num_records + 1
+        start = start + num_records
         # page = page + 1
     # End of while loop over multiple pages
 # End conditional for more than 0 items
