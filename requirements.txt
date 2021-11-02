@@ -2,4 +2,4 @@ pandas
 nltk
 plotly
 scipy
-requests
+urllib.request
