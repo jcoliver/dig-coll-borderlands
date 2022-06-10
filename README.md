@@ -9,8 +9,8 @@ by the Mellon Foundation through the
 [Collections as Data](https://collectionsasdata.github.io/part2whole/) program. 
 More information about the project is available found at 
 [https://libguides.library.arizona.edu/newspapers-as-data](https://libguides.library.arizona.edu/newspapers-as-data).
-+ _“Reporting on Race and Ethnicity in the Borderlands (1882-1924): A 
-Data-Driven Digital Storytelling Hub”_, funded by the Mellon Foundation through 
++ _Reporting on Race and Ethnicity in the Borderlands (1882-1924): A 
+Data-Driven Digital Storytelling Hub_, funded by the Mellon Foundation through 
 the [Digital Borderlands](http://borderlands.digitalscholarship.library.arizona.edu/)
 program.
 
