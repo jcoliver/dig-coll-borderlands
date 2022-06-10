@@ -1,15 +1,21 @@
-# Collections as Data
+# Borderlands newspaper data mining
 
 This repository hosts Jupyter Notebooks introducing text data mining with 
-Python on the newspaper collection. The work is part of the project _Using 
-Newspapers as Data for Collaborative Pedagogy: A Multidisciplinary 
+Python on the newspaper collection. The work is part two projects:
+
++ _Using Newspapers as Data for Collaborative Pedagogy: A Multidisciplinary 
 Interrogation of the Borderlands in Undergraduate Classrooms_, funded in part 
 by the Mellon Foundation through the 
 [Collections as Data](https://collectionsasdata.github.io/part2whole/) program. 
 More information about the project is available found at 
 [https://libguides.library.arizona.edu/newspapers-as-data](https://libguides.library.arizona.edu/newspapers-as-data).
++ _“Reporting on Race and Ethnicity in the Borderlands (1882-1924): A 
+Data-Driven Digital Storytelling Hub”_, funded by the Mellon Foundation through 
+the [Digital Borderlands](http://borderlands.digitalscholarship.library.arizona.edu/)
+program.
 
-If you are looking for an introduction explaining the concept of text data mining, check out the StoryMap at [https://storymaps.arcgis.com/stories/cd7e273c42cd4ab6b6ce3fa89c13132c](https://storymaps.arcgis.com/stories/cd7e273c42cd4ab6b6ce3fa89c13132c).
+If you are looking for an introduction explaining the concept of text data 
+mining, check out the StoryMap at [https://storymaps.arcgis.com/stories/cd7e273c42cd4ab6b6ce3fa89c13132c](https://storymaps.arcgis.com/stories/cd7e273c42cd4ab6b6ce3fa89c13132c).
 
 The scripts responsible for downloading and assembling daily volumes are 
 available in a separate repository, at 
