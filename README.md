@@ -53,10 +53,13 @@ The entire data set is available from the UArizona Research Data Repository at
 Lessons for using these data in text data mining are available in Jupyter 
 Notebooks. All lessons are licensed under a 
 [CC-BY-4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode) 2020 
-by Jeffrey C. Oliver.
+by Jeffrey C. Oliver. Translation for the Spanish version of the Text Mining 
+Template was aided in part by the Python script by Fernando Marcos Wittmann, 
+available at [https://github.com/WittmannF/jupyter-translate](https://github.com/WittmannF/jupyter-translate).
 
 | Name | Launch | Description |
 |:-----|:------:|:------------|
 | Introduction to text mining (short) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jcoliver/dig-coll-borderlands/main?filepath=Text-Mining-Short.ipynb) | A brief lesson introducing relative word frequencies and visual display of word use over time. Includes a subset of the titles (three) for the three year period 1917-1919. |
 | Introduction to text mining (long)  | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jcoliver/dig-coll-borderlands/main?filepath=Text-Mining-Long.ipynb) | An extended version of the short lesson, above. Time to complete the lesson is approximately two hours |
-| Text mining template | [![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/jcoliver/dig-coll-borderlands/main?filepath=Text-Mining-Template.ipynb) | A relatively lightweight notebook to explore text mining analyses on the full data set of eight titles. |
+| Text mining template | [![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/jcoliver/dig-coll-borderlands/main?filepath=Text-Mining-Template.ipynb) | A relatively lightweight notebook to explore text mining analyses on the full data set of 15 titles. |
+| Plantilla de Minería de Texto | [![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/jcoliver/dig-coll-borderlands/main?filepath=Text-Mining-Template_es.ipynb) | Un cuaderno relativamente liviano para explorar análisis de minería de texto en el conjunto completo de datos de 15 títulos. (BORRADOR)|
