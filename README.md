@@ -15,7 +15,7 @@ the [Digital Borderlands](http://borderlands.digitalscholarship.library.arizona.
 program.
 
 If you are looking for an introduction explaining the concept of text data 
-mining, check out the StoryMap at [https://storymaps.arcgis.com/stories/cd7e273c42cd4ab6b6ce3fa89c13132c](https://storymaps.arcgis.com/stories/cd7e273c42cd4ab6b6ce3fa89c13132c).
+mining, check out the StoryMap at [https://arcg.is/1j84jz](https://arcg.is/1j84jz).
 
 The scripts responsible for downloading and assembling daily volumes are 
 available in a separate repository, at 
